@@ -87,4 +87,4 @@ Q is licensed under MIT. The license can be found in the [./LICENSE](./LICENSE) 
 
 ## Support
 
-For help or questions, please open an issue on the GitHub repository.
+For help or questions, please open an issue on the [GitHub repository](https://github.com/JonDotsoy/q-project/issues/new).
