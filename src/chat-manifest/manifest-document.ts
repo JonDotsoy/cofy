@@ -6,6 +6,7 @@ import * as fs from "fs/promises";
 import type { SchemaDocument } from "../schema-file/schema-document";
 import { vpath } from "./vpath";
 import { stringTemplateFrom } from "./stringTemplateFrom";
+import { $ } from "bun";
 
 export class ManifestDocument {
   #manifest: Promise<ManifestDto>;
@@ -28,7 +29,19 @@ export class ManifestDocument {
     for (const e of vpath({ obj: manifest })) {
       if (e.parent) {
         e.parent[e.key] = await stringTemplateFrom(
-          e.parent[e.key],
+          await stringTemplateFrom(
+            e.parent[e.key],
+            async (path) => {
+              return (
+                "\n" +
+                `shell execution ${path}:\n` +
+                "```\n" +
+                `${await (await $`sh -c ${path}`).text()}\n` +
+                "```\n"
+              );
+            },
+            /{{\$(?<prop>.+)}}/g,
+          ).render(),
           async (path) => {
             return (
               "\n" +
