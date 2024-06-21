@@ -24,7 +24,9 @@
                 "type": "string"
               }
             },
-            "required": ["system"],
+            "required": [
+              "system"
+            ],
             "additionalProperties": false
           },
           {
@@ -34,7 +36,9 @@
                 "type": "string"
               }
             },
-            "required": ["user"],
+            "required": [
+              "user"
+            ],
             "additionalProperties": false
           },
           {
@@ -44,14 +48,18 @@
                 "type": "string"
               }
             },
-            "required": ["assistant"],
+            "required": [
+              "assistant"
+            ],
             "additionalProperties": false
           }
         ]
       }
     }
   },
-  "required": ["messages"],
+  "required": [
+    "messages"
+  ],
   "additionalProperties": false,
   "$schema": "http://json-schema.org/draft-07/schema#"
 }
