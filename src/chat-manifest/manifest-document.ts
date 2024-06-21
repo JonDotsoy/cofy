@@ -21,7 +21,10 @@ export class ManifestDocument {
   }
 
   async downloadFileContent(path: string) {
-    return await fs.readFile(path, "utf-8");
+    return await fs.readFile(
+      new URL(path, ManifestDocument.#pathsOfManifests.get(this)),
+      "utf-8",
+    );
   }
 
   async loadingManifestWithContext() {
