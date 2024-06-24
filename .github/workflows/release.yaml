@@ -25,6 +25,7 @@ jobs:
         if: steps.release-please.outputs.pr
         with:
           ref: ${{ fromJSON(steps.release-please.outputs.pr).headBranchName }}
+      - uses: oven-sh/setup-bun@v1
       - if: steps.release-please.outputs.pr
         run: |
           make preparepkg
