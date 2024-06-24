@@ -61,6 +61,32 @@ messages:
 - `user`: Message sent by the user.
 - `assistant`: Response from the AI model.
 
+## Manifest
+
+### Embedding Content
+
+You can embed the content of another document into your manifest YAML file using `{{include <ruta del archivo>}}`. For example:
+
+```yaml
+messages:
+  - system: |
+      {{include "./hello.txt"}}
+```
+
+This will insert the contents of `hello.txt` into the conversation.
+
+### Executing Commands
+
+You can also embed the output of a command execution into your manifest YAML file using `{{$ command}}`. For example:
+
+```yaml
+messages:
+  - system: |
+      {{$ 'ls -l | grep *.txt'}}
+```
+
+This will execute the `ls -l` command and embed the output, filtering only files with `.txt` extensions.
+
 ## Local Deployment
 
 1. Install dependencies:
