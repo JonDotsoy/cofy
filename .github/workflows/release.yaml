@@ -1,0 +1,53 @@
+on:
+  push:
+    branches:
+      - "develop"
+
+name: Release
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release-please.outputs.release_created }}
+      prs_created: ${{ steps.release-please.outputs.prs_created }}
+      pr: ${{ steps.release-please.outputs.pr }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release-please
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+        if: steps.release-please.outputs.pr
+        with:
+          ref: ${{ fromJSON(steps.release-please.outputs.pr).headBranchName }}
+      - if: steps.release-please.outputs.pr
+        run: |
+          make preparepkg
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git remote add gh-token "https://${{ secrets.GITHUB_TOKEN }}@github.com/googleapis/release-please-action.git"
+          git checkout ${{ fromJSON(steps.release-please.outputs.pr).headBranchName }}
+          git add src/pkg.ts
+          git commit -n -m "change: upgrade src/pkg.ts file"
+          git push
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: "https://registry.npmjs.org"
+      - uses: oven-sh/setup-bun@v1
+      - run: bun i
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
