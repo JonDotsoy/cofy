@@ -1,7 +1,7 @@
 {
   "name": "q",
   "description": "Conversational AI project for facilitating conversations using YAML files",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "module": "index.ts",
   "type": "module",
