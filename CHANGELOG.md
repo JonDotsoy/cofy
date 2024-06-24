@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/JonDotsoy/q-project/compare/q-v0.1.0...q-v0.1.1) (2024-06-24)
+
+
+### Miscellaneous Chores
+
+* release 0.1.1 ([0912af0](https://github.com/JonDotsoy/q-project/commit/0912af0a15517f3afa9d093aa73ae2bfbdaff998))
+
 ## [0.1.0](https://github.com/JonDotsoy/q-project/compare/q-v0.0.1...q-v0.1.0) (2024-06-24)
 
 
