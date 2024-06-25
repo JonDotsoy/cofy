@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/JonDotsoy/q-project/compare/q-v0.1.1...q-v0.1.2) (2024-06-25)
+
+
+### Bug Fixes
+
+* upgrade spin progress, prevent lost characters ([db09e76](https://github.com/JonDotsoy/q-project/commit/db09e76828f40528ad3112680a7897d6f4193247))
+
 ## [0.1.1](https://github.com/JonDotsoy/q-project/compare/q-v0.1.0...q-v0.1.1) (2024-06-24)
 
 
