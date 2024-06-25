@@ -1,1 +1,1 @@
-export const pkg = { version: "0.1.1" } as const;
+export const pkg = { version: "0.1.2" } as const;
