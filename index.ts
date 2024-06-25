@@ -10,10 +10,19 @@ import { pkg } from "./pkg";
 function progresSpin() {
   const symbols = [".  ", ".. ", "..."];
   let count = 0;
+  let paragraphSize = 0;
   let stoped = false;
 
+  const layout: typeof String.raw = (...args) => {
+    const txt = String.raw(...args);
+    paragraphSize = Math.max(paragraphSize, txt.length);
+    return txt.padEnd(paragraphSize, " ");
+  };
+
   const ping = () => {
-    process.stdout.write(`\r${symbols[count++ % symbols.length]} processing`);
+    process.stdout.write(
+      `\r${layout`${symbols[count++ % symbols.length]} processing`}`,
+    );
   };
 
   const interval = setInterval(() => ping(), 150);
@@ -22,7 +31,7 @@ function progresSpin() {
     if (stoped) return;
     stoped = true;
     clearInterval(interval);
-    process.stdout.write(`\r`);
+    process.stdout.write(`\r${layout``}\r`);
   };
 
   return { stop };
