@@ -99,9 +99,25 @@ export class ManifestDocument {
     return manifest;
   }
 
-  setSchemaDocument(schemaDocument: SchemaDocument) {
+  setSchemaIfNotExists(schemaDocument: SchemaDocument) {
     if (this.doc.commentBefore) return;
     this.doc.commentBefore = ` yaml-language-server: $schema=${schemaDocument.location()}`;
+  }
+
+  getDocumentId() {
+    const documentIdScalar = this.doc.getIn(["document_id"], true);
+    if (
+      YAML.isScalar(documentIdScalar) &&
+      typeof documentIdScalar.value === "string"
+    )
+      return documentIdScalar.value;
+    return null;
+  }
+
+  setDocumentIdIfNotExists(id: string) {
+    const documentId = this.getDocumentId();
+    if (documentId) return;
+    this.doc.setIn(["document_id"], id);
   }
 
   addInWithReflect<T>(path: string[], ref: T, cbOnSabe: (map: T) => void) {
@@ -112,6 +128,12 @@ export class ManifestDocument {
 
   toDocument() {
     this.#reflects.forEach((cb) => cb());
+    const d = this.getDocumentId();
+    if (d === null) {
+      const messages = this.doc.get("messages");
+      this.doc.delete("messages");
+      this.doc.set("messages", messages);
+    }
     return this.doc;
   }
 
