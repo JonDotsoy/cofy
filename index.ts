@@ -1,6 +1,6 @@
 import { URL } from "url";
 import * as YAML from "yaml";
-import { urlByRelativePath } from "./src/common/workflow";
+import { urlFromRelativePath } from "./src/common/workflow";
 import { ManifestDocument } from "./src/chat-manifest/manifest-document";
 import { chatWithManifest } from "./src/ollama/chat-with-manifest";
 import { SchemaDocument } from "./src/schema-file/schema-document";
@@ -89,7 +89,7 @@ const main = async (args: string[]) => {
 
     if (!fileRelativePath) throw new Error("No file path provided");
 
-    const fileFullPath = urlByRelativePath(fileRelativePath);
+    const fileFullPath = urlFromRelativePath(fileRelativePath);
 
     const manifestDocument = await ManifestDocument.fromPath(fileFullPath);
     const manifest = await manifestDocument.getManifest();
@@ -110,7 +110,7 @@ const main = async (args: string[]) => {
 
     if (!fileRelativePath) throw new Error("No file path provided");
 
-    const fileFullPath = urlByRelativePath(fileRelativePath);
+    const fileFullPath = urlFromRelativePath(fileRelativePath);
 
     const manifest = await ManifestDocument.fromPath(fileFullPath);
 
