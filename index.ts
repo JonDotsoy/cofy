@@ -7,11 +7,11 @@ import { SchemaDocument } from "./src/schema-file/schema-document";
 import * as flags from "@jondotsoy/flags";
 import { pkg } from "./pkg";
 
-function progresSpin() {
+function createProgressSpin() {
   const symbols = [".  ", ".. ", "..."];
   let count = 0;
   let paragraphSize = 0;
-  let stoped = false;
+  let stopped = false;
 
   const layout: typeof String.raw = (...args) => {
     const txt = String.raw(...args);
@@ -28,8 +28,8 @@ function progresSpin() {
   const interval = setInterval(() => ping(), 150);
 
   const stop = () => {
-    if (stoped) return;
-    stoped = true;
+    if (stopped) return;
+    stopped = true;
     clearInterval(interval);
     process.stdout.write(`\r${layout``}\r`);
   };
@@ -102,7 +102,7 @@ const main = async (args: string[]) => {
   }
 
   if (options.fileRelativePath) {
-    const p = progresSpin();
+    const progressSpin = createProgressSpin();
 
     const fileRelativePath = options.fileRelativePath;
 
@@ -119,7 +119,7 @@ const main = async (args: string[]) => {
     await chatWithManifest(manifest, {
       model: options.model,
       onStartWrite() {
-        p.stop();
+        progressSpin.stop();
       },
     });
 
