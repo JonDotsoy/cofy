@@ -2,6 +2,10 @@
 
 Q is a project designed to facilitate conversations with artificial intelligence models. It allows users to create and manage conversations using a simple YAML file.
 
+**Demo**
+
+[![demo](<screen_recording_2024-06-27_2.03.20 PM.jpg>)](https://youtu.be/4lEQjqxf6gU)
+
 ## Installation
 
 ```
