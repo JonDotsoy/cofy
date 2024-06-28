@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://github.com/JonDotsoy/q-project/compare/q-v0.1.2...q-v0.2.0) (2024-06-28)
+
+
+### Features
+
+* add document_id field to manifest schema ([501b383](https://github.com/JonDotsoy/q-project/commit/501b383ded02b344036e389f13ceabce5052d70d))
+
+
+### Bug Fixes
+
+* update manifest schema and id handling ([00ac171](https://github.com/JonDotsoy/q-project/commit/00ac171ad7ecd3501d255d7487d911f50ec09e90))
+* update progress spin function to createProgressSpin ([37858fc](https://github.com/JonDotsoy/q-project/commit/37858fc8e853d0d2265f5873fec0fb66df6ca2ca))
+* update workflow to use `urlFromRelativePath` instead of `urlByRelativePath` ([9c95b3c](https://github.com/JonDotsoy/q-project/commit/9c95b3c35dad2deb59cc43339451f5c8bb1dc4ad))
+
 ## [0.1.2](https://github.com/JonDotsoy/q-project/compare/q-v0.1.1...q-v0.1.2) (2024-06-25)
 
 
