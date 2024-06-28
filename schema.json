@@ -1,6 +1,9 @@
 {
   "type": "object",
   "properties": {
+    "document_id": {
+      "type": "string"
+    },
     "output": {
       "type": "string"
     },
