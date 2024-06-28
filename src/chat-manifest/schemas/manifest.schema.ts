@@ -7,6 +7,7 @@ export const MessageObject = union([
 ]);
 
 export const ManifestSchema = object({
+  document_id: optional(string()),
   output: optional(string()),
   options: optional(
     object({
