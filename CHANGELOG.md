@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/JonDotsoy/q-project/compare/q-v0.2.0...q-v0.3.0) (2024-07-17)
+
+
+### Features
+
+* Improved documentation and fixed bugs in README and code files ([e2b2f1e](https://github.com/JonDotsoy/q-project/commit/e2b2f1e21cab555d4e0e0c2991663ee912381147))
+
 ## [0.2.0](https://github.com/JonDotsoy/q-project/compare/q-v0.1.2...q-v0.2.0) (2024-06-28)
 
 
