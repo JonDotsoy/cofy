@@ -114,7 +114,6 @@ const main = async (args: string[]) => {
 
     const manifest = await ManifestDocument.fromPath(fileFullPath);
 
-    manifest.setDocumentIdIfNotExists(crypto.randomUUID());
     manifest.setSchemaIfNotExists(schemaDocument);
 
     await chatWithManifest(manifest, {

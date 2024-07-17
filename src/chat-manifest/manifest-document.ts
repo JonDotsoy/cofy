@@ -114,12 +114,6 @@ export class ManifestDocument {
     return null;
   }
 
-  setDocumentIdIfNotExists(id: string) {
-    const documentId = this.getDocumentId();
-    if (documentId) return;
-    this.doc.setIn(["document_id"], id);
-  }
-
   addInWithReflect<T>(path: string[], ref: T, cbOnSabe: (map: T) => void) {
     const node = ref;
     this.doc.addIn(path, node);

@@ -133,26 +133,6 @@ messages:
 
 This will execute the `ls -l` command and embed the output, filtering only files with `.txt` extensions.
 
-## Local Deployment
-
-1. Install dependencies:
-
-```
-bun install
-```
-
-2. Compile the project:
-
-```
-bun build --compile index.ts --outFile q
-```
-
-3. Run Q:
-
-```
-./q <manifest>
-```
-
 ## License
 
 Q is licensed under MIT. The license can be found in the [./LICENSE](./LICENSE) file.
