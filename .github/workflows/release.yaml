@@ -36,6 +36,9 @@ jobs:
           git add pkg.ts
           git commit -n -m "change: upgrade pkg.ts file"
           git push
+      - name: publish release
+        # if: steps.release-please.outputs.releases_created == 'true'
+        run: gh workflow run --repo JonDotsoy/homebrew-core refresh.yml -F repo_name=JonDotsoy/q-project
 
   # publish:
   #   runs-on: ubuntu-latest
