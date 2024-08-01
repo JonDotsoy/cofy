@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/JonDotsoy/q-project/compare/q-v0.3.0...q-v0.4.0) (2024-08-01)
+
+
+### Features
+
+* upgrade default model to llama3.1 ([2726fe2](https://github.com/JonDotsoy/q-project/commit/2726fe23997f47575b94d2ce99d58e7e2a79ae8b))
+* upgrade release workflow ([ad73196](https://github.com/JonDotsoy/q-project/commit/ad7319653138ae20589e47ece9db3ab6cb90e20f))
+
 ## [0.3.0](https://github.com/JonDotsoy/q-project/compare/q-v0.2.0...q-v0.3.0) (2024-07-17)
 
 
