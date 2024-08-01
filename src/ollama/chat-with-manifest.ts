@@ -42,7 +42,7 @@ export const chatWithManifest = async (
       options?.model ??
       manifest.options?.model ??
       options?.defaultModel ??
-      "llama3",
+      "llama3.1",
     messages: await Array.fromAsync(getMessagesFromManifest(manifestDocument)),
     stream: true,
   });

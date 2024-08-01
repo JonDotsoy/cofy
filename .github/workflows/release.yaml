@@ -39,6 +39,8 @@ jobs:
       - name: publish release
         # if: steps.release-please.outputs.releases_created == 'true'
         run: gh workflow run --repo JonDotsoy/homebrew-core refresh.yml -F repo_name=JonDotsoy/q-project
+        env:
+          GH_TOKEN: ${{ github.token }}
 
   # publish:
   #   runs-on: ubuntu-latest
