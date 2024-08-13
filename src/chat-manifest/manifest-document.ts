@@ -27,6 +27,10 @@ export class ManifestDocument {
     });
   }
 
+  reload() {
+    this.#manifest = this.loadingManifestWithContext();
+  }
+
   async getManifest() {
     return await this.#manifest;
   }
@@ -71,10 +75,10 @@ export class ManifestDocument {
           includes.set(
             includePath,
             "\n" +
-              `content of file ${includePath}:\n` +
-              "```\n" +
-              `${await this.downloadFileContent(includePath)}\n` +
-              "```\n",
+            `content of file ${includePath}:\n` +
+            "```\n" +
+            `${await this.downloadFileContent(includePath)}\n` +
+            "```\n",
           );
         }
 
@@ -86,10 +90,10 @@ export class ManifestDocument {
           shells.set(
             cmd,
             "\n" +
-              `shell execution ${JSON.stringify(cmd)}:\n` +
-              "```\n" +
-              `${await children.text()}\n` +
-              "```\n",
+            `shell execution ${JSON.stringify(cmd)}:\n` +
+            "```\n" +
+            `${await children.text()}\n` +
+            "```\n",
           );
         }
 
@@ -118,6 +122,12 @@ export class ManifestDocument {
     const node = ref;
     this.doc.addIn(path, node);
     this.#reflects.add(() => cbOnSabe(node));
+  }
+
+  addMessage(role: "user", prompt: string) {
+    const scalar = new YAML.YAMLMap();
+    scalar.set(role, new YAML.Scalar(prompt));
+    this.doc.addIn(["messages"], scalar);
   }
 
   toDocument() {

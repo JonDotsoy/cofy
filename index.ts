@@ -42,6 +42,7 @@ const schemaDocument = new SchemaDocument(
 );
 
 type MainOptions = {
+  prompt: string,
   fileRelativePath: string;
   model: string;
   schema: boolean;
@@ -57,7 +58,9 @@ const mainRules: flags.Rule<MainOptions>[] = [
   flags.rule(flags.flag("--schema"), flags.isBooleanAt("schema")),
   flags.rule(flags.flag("--render"), flags.isBooleanAt("render")),
   flags.rule((arg, ctx) => {
+    if (ctx.flags.fileRelativePath) return false
     const fileMatched =
+      arg.endsWith(".agent") ||
       arg.endsWith(".yaml") ||
       arg.endsWith(".yml") ||
       arg.endsWith(".qmyaml") ||
@@ -66,6 +69,11 @@ const mainRules: flags.Rule<MainOptions>[] = [
     ctx.argValue = arg;
     return true;
   }, flags.isStringAt("fileRelativePath")),
+  flags.rule((arg, ctx) => {
+    if (ctx.flags.prompt) return false
+    ctx.argValue = arg;
+    return true;
+  }, flags.isStringAt("prompt")),
 ];
 
 const main = async (args: string[]) => {
@@ -115,6 +123,12 @@ const main = async (args: string[]) => {
     const manifest = await ManifestDocument.fromPath(fileFullPath);
 
     manifest.setSchemaIfNotExists(schemaDocument);
+
+    if (options.prompt) {
+      manifest.addMessage("user", options.prompt);
+      await manifest.save();
+      manifest.reload();
+    }
 
     await chatWithManifest(manifest, {
       model: options.model,
