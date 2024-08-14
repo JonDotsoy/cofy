@@ -1,11 +1,11 @@
 import { URL } from "url";
 import * as YAML from "yaml";
-import { urlFromRelativePath } from "./src/common/workflow";
-import { ManifestDocument } from "./src/chat-manifest/manifest-document";
-import { chatWithManifest } from "./src/ollama/chat-with-manifest";
-import { SchemaDocument } from "./src/schema-file/schema-document";
+import { urlFromRelativePath } from "./common/workflow";
+import { ManifestDocument } from "./chat-manifest/manifest-document";
+import { chatWithManifest } from "./ollama/chat-with-manifest";
+import { SchemaDocument } from "./schema-file/schema-document";
 import * as flags from "@jondotsoy/flags";
-import { pkg } from "./pkg";
+import { pkg } from "../pkg";
 
 function createProgressSpin() {
   const symbols = [".  ", ".. ", "..."];
