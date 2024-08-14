@@ -42,7 +42,7 @@ const schemaDocument = new SchemaDocument(
 );
 
 type MainOptions = {
-  prompt: string,
+  prompt: string;
   fileRelativePath: string;
   model: string;
   schema: boolean;
@@ -58,7 +58,7 @@ const mainRules: flags.Rule<MainOptions>[] = [
   flags.rule(flags.flag("--schema"), flags.isBooleanAt("schema")),
   flags.rule(flags.flag("--render"), flags.isBooleanAt("render")),
   flags.rule((arg, ctx) => {
-    if (ctx.flags.fileRelativePath) return false
+    if (ctx.flags.fileRelativePath) return false;
     const fileMatched =
       arg.endsWith(".agent") ||
       arg.endsWith(".yaml") ||
@@ -70,7 +70,7 @@ const mainRules: flags.Rule<MainOptions>[] = [
     return true;
   }, flags.isStringAt("fileRelativePath")),
   flags.rule((arg, ctx) => {
-    if (ctx.flags.prompt) return false
+    if (ctx.flags.prompt) return false;
     ctx.argValue = arg;
     return true;
   }, flags.isStringAt("prompt")),
