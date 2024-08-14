@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.5.0](https://github.com/JonDotsoy/q-project/compare/q-v0.4.0...q-v0.5.0) (2024-08-14)
+
+
+### Features
+
+* add experimental features and new option to manifest schema ([a0d84fc](https://github.com/JonDotsoy/q-project/commit/a0d84fcb1f7960ac132c7eb68c6b3b994e2ff949))
+* add manifest document loading and processing capabilities with experimental features ([ce8ef2d](https://github.com/JonDotsoy/q-project/commit/ce8ef2de3d74cd4f79ada8f941b3b92984b10c33))
+* add shaded agent for generating commit messages ([587fb1e](https://github.com/JonDotsoy/q-project/commit/587fb1eb808cca5c6cadc0b08ebba6fa054009ef))
+* update schema.json with experimental features and new option ([4d630c9](https://github.com/JonDotsoy/q-project/commit/4d630c9d354e1f98e1fe71b80fb22a8f1eca66c6))
+
+
+### Bug Fixes
+
+* update index.ts to fix boolean type issues and improve flag handling ([fe7bb6f](https://github.com/JonDotsoy/q-project/commit/fe7bb6ffb1cf5ef7abe4815f57355af1f8128859))
+
 ## [0.4.0](https://github.com/JonDotsoy/q-project/compare/q-v0.3.0...q-v0.4.0) (2024-08-01)
 
 
