@@ -8,6 +8,12 @@ The inspiration behind Project Q is the desire to make AI development more acces
 
 [![demo](./assets/imgs/screen_recording_2024-06-27_2.03.20 PM.jpg)](https://youtu.be/4lEQjqxf6gU)
 
+**Content**
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Manifest File Format](#manifest-file-format)
+
 ## Installation
 
 To install Project Q, you can use Homebrew on macOS. Simply run the following command in your terminal:
@@ -26,37 +32,29 @@ Before installing Project Q, you need to have Bun.js installed on your system. Y
 
 Clone the repository:
 
-```
-git clone https://github.com/JonDotsoy/q-project
+```shell
+git clone https://github.com/JonDotsoy/q-project.git
 ```
 
 Install dependencies:
 
-```
+```shell
 make install
 ```
 
 Compile the project:
 
-```
+```shell
 make build
 ```
 
 This will compile and prepare your local environment for running Project Q.
 
-**Run**
-
-After completing the installation, you can run Project Q using the following command:
-
-```
-./dist/q <manifest>
-```
-
-> Replace `<manifest>` with the path to your YAML file manifest.
-
 ## Usage
 
-**1. Create a YAML file:**
+### 1. Create a YAML file:
+
+The manifest file, named `manifest.yaml`, should contain the following structure:
 
 ```yaml
 # manifest.yaml
@@ -65,49 +63,72 @@ messages:
       Hello, how are you?
   - user: |
       I'm fine, thank you.
+  - assistant: |
+      Nice to meet you!
 ```
 
-**2. Run Q:**
+This file defines the conversation flow and context for Project Q.
 
-```
+### 2. Run Q:
+
+After creating the `manifest.yaml` file, you can run Project Q using the following command:
+
+```shell
 q manifest.yaml
 ```
 
-Q will process the YAML file and respond with a message.
+Q will process the YAML file and respond with a message based on the defined conversation flow.
 
-**3. Specify a specific model:**
+### 3. Specify a specific model:
 
+To use a specific AI model, such as gemma:7b, specify it in the command like this:
+
+```shell
+q --model=gemma:7b manifest.yaml
 ```
-q --model=gemma:7b  manifest.yaml
-```
 
-Q will use the gemma:7b model specified for responding to questions.
+Q will use the specified model for responding to questions.
 
 ### Arguments
 
 - `--version`: Displays the version of Q.
 - `--model`: Specifies the AI model to use.
-- 🚧 `--list-models`: Lists available models.
 
-### YAML File
+**Note:** The flag `--list-models` may not work as expected. To list available models, please run `ollama list` instead.
 
-The YAML file contains conversation messages. The format is:
+## Manifest File Format
+
+The manifest file, named `manifest.yaml`, should contain the following structure:
 
 ```yaml
+# manifest.yaml
 messages:
-  - system: |
+  - system: |-
       ...
-  - user: |
+  - user: |-
       ...
-  - assistant: |
+  - assistant: |-
       ...
 ```
+
+### Messages
 
 - `system`: Message sent by the bot.
 - `user`: Message sent by the user.
 - `assistant`: Response from the AI model.
 
-## Manifest
+### Context
+
+> 🚧 Work on progress
+
+You can store context information in your YAML file using the following syntax:
+
+```yaml
+context:
+  previous_question: What is your name?
+```
+
+Context information helps the AI model keep track of the conversation history and provide more accurate responses.
 
 ### Embedding Content
 
@@ -132,6 +153,19 @@ messages:
 ```
 
 This will execute the `ls -l` command and embed the output, filtering only files with `.txt` extensions.
+
+## Extending Manifest Files
+
+> 🚧 Experimental feature
+
+The manifest file can have a property `extends` that includes messages in this file. This feature is experimental.
+
+```yaml
+# manifest.yaml
+extends: ./messages_extends.yaml
+```
+
+This will include all messages defined in `./messages_extends.yaml`.
 
 ## License
 
