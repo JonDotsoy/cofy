@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.1](https://github.com/JonDotsoy/q-project/compare/q-v0.5.0...q-v0.5.1) (2024-08-14)
+
+
+### Performance Improvements
+
+* rename index.ts to src/bin.ts and update imports ([ddcaed6](https://github.com/JonDotsoy/q-project/commit/ddcaed633bbb3b08327f1dcbb2a421fcf2eeb1bb))
+* update bin.ts to load schema from correct location ([d188786](https://github.com/JonDotsoy/q-project/commit/d188786a4aaf077f8c989e2fdab360054707aa01))
+* update Makefile to parse package.json version correctly ([9e59377](https://github.com/JonDotsoy/q-project/commit/9e59377edde348ba701202a7eb805c7a09441d09))
+
 ## [0.5.0](https://github.com/JonDotsoy/q-project/compare/q-v0.4.0...q-v0.5.0) (2024-08-14)
 
 
