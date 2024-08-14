@@ -38,7 +38,7 @@ function createProgressSpin() {
 }
 
 const schemaDocument = new SchemaDocument(
-  new URL("./schema.json", import.meta.url),
+  new URL("../schema.json", import.meta.url),
 );
 
 type MainOptions = {
