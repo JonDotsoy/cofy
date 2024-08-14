@@ -2,19 +2,26 @@
   "type": "object",
   "properties": {
     "document_id": {
-      "type": "string"
+      "type": "string",
+      "description": "Experimental"
     },
     "output": {
-      "type": "string"
+      "type": "string",
+      "description": "Experimental"
     },
     "options": {
       "type": "object",
       "properties": {
         "model": {
-          "type": "string"
+          "type": "string",
+          "description": "Sample: llama3.1, llama3"
         }
       },
       "additionalProperties": false
+    },
+    "extends": {
+      "type": "string",
+      "description": "Source to import messages. Able lo load files"
     },
     "messages": {
       "type": "array",
