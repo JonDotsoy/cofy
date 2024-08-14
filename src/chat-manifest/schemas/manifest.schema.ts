@@ -14,6 +14,8 @@ export const ManifestSchema = object({
       model: optional(string()).describe("Sample: llama3.1, llama3"),
     }),
   ),
-  extends: optional(string()).describe("Source to import messages. Able lo load files"),
+  extends: optional(string()).describe(
+    "Source to import messages. Able lo load files",
+  ),
   messages: array(MessageObject),
 });
