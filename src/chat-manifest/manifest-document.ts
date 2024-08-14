@@ -5,10 +5,32 @@ import { ManifestSchema } from "./schemas/manifest.schema";
 import * as fs from "fs/promises";
 import type { SchemaDocument } from "../schema-file/schema-document";
 import { vpath } from "./vpath";
-import { stringTemplateFrom } from "./stringTemplateFrom";
 import { $ } from "bun";
 import * as Handlebars from "handlebars";
 
+const logWarn = (message: string) => {
+  if (logWarn.logged) return
+  logWarn.logged = true
+  console.warn(message)
+}
+logWarn.logged = false
+
+/**
+ * # Manifest-Document API
+ * 
+ * The Manifest-Document API enables the reading of YAML files and processing of conversations that will be sent to a Large Language Model (LLM). This library features a `ManifestDocument` class.
+ * 
+ * ## Class ManifestDocument
+ * 
+ * The `ManifestDocument` class serves as the basis for interacting with YAML files. It provides methods useful for loading, processing, and manipulating the information contained within these files.
+ * 
+ * @example
+ * const { ManifestDocument } = require('manifest-document');
+ * 
+ * // Load a YAML file from a specified path
+ * const yamlPath = './path/to/your/yaml/file.yaml';
+ * const manifestDocument = await ManifestDocument.fromPath(yamlPath);
+ */
 export class ManifestDocument {
   #manifest: Promise<ManifestDto>;
   #reflects = new Set<() => void>();
@@ -39,11 +61,24 @@ export class ManifestDocument {
     return await fs.readFile(new URL(path, this.path), "utf-8");
   }
 
+  /**
+   * Load and process a YAML file. It takes the contents of the YAML file as input, parses it using the ManifestSchema, and returns the parsed data.
+   * @returns A resolves with the parsed manifest data
+   */
   async loadingManifestWithContext() {
     const includes = new Map<string, string | undefined>();
     const shells = new Map<string, string | undefined>();
 
     const manifest = ManifestSchema.parse(this.doc.toJSON());
+
+    if (manifest.extends) {
+      logWarn(`The "extends" property is a experimental feature.`);
+      const nextManifest = ManifestSchema.parse(YAML.parse(await fs.readFile(manifest.extends, 'utf-8')));
+      manifest.messages = [
+        ...nextManifest.messages,
+        ...manifest.messages,
+      ];
+    }
 
     const handlebars = Handlebars.create();
 
@@ -149,6 +184,21 @@ export class ManifestDocument {
 
   // static #pathsOfManifests = new WeakMap<ManifestDocument, URL>();
 
+  /**
+   * *   **Description:** Loads a YAML file from a specified path and returns an instance of `ManifestDocument`.
+   * *   **Parameters:**
+   *     *   `LikePath`: The path to the YAML file to be loaded.
+   * *   **Return:** An instance of the `ManifestDocument` class.
+   * 
+   * @example
+   * const { ManifestDocument } = require('manifest-document');
+   * 
+   * // Load a YAML file from a specified path
+   * const yamlPath = './path/to/your/yaml/file.yaml';
+   * const manifestDocument = await ManifestDocument.fromPath(yamlPath);
+   * @param path 
+   * @returns 
+   */
   static async fromPath(path: { toString(): string }) {
     if (!URL.canParse(path.toString())) throw new Error("Invalid path");
     const pathUrl = new URL(path.toString());
