@@ -8,6 +8,24 @@ import { vpath } from "./vpath";
 import { $ } from "bun";
 import * as Handlebars from "handlebars";
 
+const downloadFromURL = async (source: string) => {
+  const res = await fetch(source);
+  return res.text();
+};
+const download = async (source: string) => {
+  const src = new URL(source, new URL(`${process.cwd()}/`, "file://"));
+
+  if (src.protocol === "http:" || src.protocol === "https:") {
+    return await downloadFromURL(src.href);
+  }
+
+  if (src.protocol === "file:") {
+    return await fs.readFile(src.pathname, "utf-8");
+  }
+
+  throw new Error(`Unsupported protocol: ${src.protocol}`);
+};
+
 const logWarn = (message: string) => {
   if (logWarn.logged) return;
   logWarn.logged = true;
@@ -57,6 +75,8 @@ export class ManifestDocument {
     return await this.#manifest;
   }
 
+  async getManifestMessages() {}
+
   async downloadFileContent(path: string) {
     return await fs.readFile(new URL(path, this.path), "utf-8");
   }
@@ -77,6 +97,38 @@ export class ManifestDocument {
         YAML.parse(await fs.readFile(manifest.extends, "utf-8")),
       );
       manifest.messages = [...nextManifest.messages, ...manifest.messages];
+    }
+
+    // Resolve Messages
+    for (const messageIndex in manifest.messages) {
+      const message = manifest.messages[messageIndex];
+      const getContent = () => {
+        if ("user" in message)
+          return {
+            update: (newContent: string) => (message.user = newContent),
+            content: message.user,
+          };
+        if ("system" in message)
+          return {
+            update: (newContent: string) => (message.system = newContent),
+            content: message.system,
+          };
+        if ("assistant" in message)
+          return {
+            update: (newContent: string) => (message.assistant = newContent),
+            content: message.assistant,
+          };
+        return null;
+      };
+
+      const content = getContent();
+      if (content === null)
+        throw new Error("Cannot resolve message", { cause: message });
+
+      if (typeof content.content === "string") continue;
+      if ("from" in content.content) {
+        content.update(await download(content.content.from));
+      }
     }
 
     const handlebars = Handlebars.create();
