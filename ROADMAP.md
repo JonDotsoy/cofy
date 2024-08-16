@@ -31,6 +31,8 @@ The following roadmap provides an overview of the planned features, their expect
 | --- | --- | --- |
 | [Extends messages](#extends-messages) | On Progress | September 2024 |
 | [Remote Prompt Support for q Command](#remote-prompt-support-for-q-command) | On Progress | September 2024 |
+| [New File Creation with Manifest Support](#new-file-creation-with-manifest-support) | On Design | August 2024 |
+| [Dynamic Message Generation with Remote Prompts](#dynamic-message-generation-with-remote-prompts) | On Design | August 2024 |
 
 ## Proposals
 
@@ -64,3 +66,43 @@ The new behavior will be as follows:
 
 By adding this new functionality, we can improve collaboration and flexibility among developers, allowing them to share and reuse agents across different environments.
 
+### New File Creation with Manifest Support
+
+We will add a new flag to the existing `q` command that allows users to create a new file with a manifest. This feature will provide a convenient way for developers to start a new project or component with a pre-configured manifest.
+
+The new behavior will be as follows:
+
+* When the user executes `q -n` (or `q --new`) without specifying any additional arguments, the application will prompt the user to enter a name for the new file.
+* The user can then provide a name for the new file, and the application will create a new file with that name and a pre-configured manifest.
+* If the user specifies a directory as an argument (e.g., `q -n mydir`), the new file will be created in that directory instead of the current working directory.
+* The manifest will contain default configurations and settings for the new file, which can be customized by the user if needed.
+
+By adding this new functionality, we can make it easier for developers to start new projects or components with a solid foundation.
+
+### Dynamic Message Generation with Remote Prompts
+
+We will introduce a new feature that allows the inclusion of dynamic messages in the `q` command, using remote prompts to fetch and incorporate content from various sources.
+
+The new behavior will be as follows:
+
+* Within each message scope, the `from` property can be used to specify the source of the content. This can be either a remote URL (e.g., GitHub repository) or a local file path.
+* When the `q` command is executed, it will fetch the content from the specified source and include it in the corresponding message.
+
+**Example Manifest**
+
+```yaml
+messages:
+  - system:
+      title: "Welcome to our system"
+      from: https://raw.githubusercontent.com/danielmiessler/fabric/main/patterns/create_tags/system.md
+  - user:
+      title: "Hello, this is a test message"
+      from: ./blogs/my-publication.md
+```
+
+In this example, the `q` command will fetch and display two messages:
+
+1. The first message is system-wide and fetched from a remote GitHub repository.
+2. The second message is intended for a specific user and fetched from a local file path.
+
+By introducing this feature, we can make it easier to create dynamic and interactive experiences within our application.
