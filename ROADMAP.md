@@ -74,10 +74,8 @@ The new behavior will be as follows:
 
 * When the user executes `q -n` (or `q --new`) without specifying any additional arguments, the application will prompt the user to enter a name for the new file.
 * The user can then provide a name for the new file, and the application will create a new file with that name and a pre-configured manifest.
-* If the user specifies a directory as an argument (e.g., `q -n mydir`), the new file will be created in that directory instead of the current working directory.
 * The manifest will contain default configurations and settings for the new file, which can be customized by the user if needed.
 
-By adding this new functionality, we can make it easier for developers to start new projects or components with a solid foundation.
 
 ### Dynamic Message Generation with Remote Prompts
 
