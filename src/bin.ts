@@ -6,6 +6,10 @@ import { chatWithManifest } from "./ollama/chat-with-manifest";
 import { SchemaDocument } from "./schema-file/schema-document";
 import * as flags from "@jondotsoy/flags";
 import { pkg } from "../pkg";
+import * as fs from "fs/promises";
+import * as os from "os";
+
+const VISUAL_EDITOR = process.env.Q_EDITOR ?? process.env.GIT_EDITOR ?? process.env.EDITOR ?? 'code';
 
 function createProgressSpin() {
   const symbols = [".  ", ".. ", "..."];
@@ -49,6 +53,7 @@ type MainOptions = {
   version: boolean;
   render: boolean;
   listModels: boolean;
+  new: boolean;
 };
 
 const mainRules: flags.Rule<MainOptions>[] = [
@@ -57,6 +62,7 @@ const mainRules: flags.Rule<MainOptions>[] = [
   flags.rule(flags.flag("--list-models"), flags.isBooleanAt("listModels")),
   flags.rule(flags.flag("--schema"), flags.isBooleanAt("schema")),
   flags.rule(flags.flag("--render"), flags.isBooleanAt("render")),
+  flags.rule(flags.flag("-n", "--new"), flags.isBooleanAt("new")),
   flags.rule((arg, ctx) => {
     if (ctx.flags.fileRelativePath) return false;
     const fileMatched =
@@ -119,8 +125,20 @@ const main = async (args: string[]) => {
     if (!fileRelativePath) throw new Error("No file path provided");
 
     const fileFullPath = urlFromRelativePath(fileRelativePath);
+    let tmpFileFullPath: null | URL = null;
 
-    const manifest = await ManifestDocument.fromPath(fileFullPath);
+    if (options.new) {
+      const tmpId = crypto.randomUUID()
+      tmpFileFullPath = new URL(`${tmpId}.yaml`, new URL(`${os.tmpdir()}/`, "file:"));
+      await fs.copyFile(fileFullPath, tmpFileFullPath);
+      try {
+        await Bun.$`${VISUAL_EDITOR} ${tmpFileFullPath.pathname}`;
+      } catch (ex) {
+        console.info(`Open the temporal file ${tmpFileFullPath.pathname}`);
+      }
+    };
+
+    const manifest = await ManifestDocument.fromPath(tmpFileFullPath ?? fileFullPath);
 
     manifest.setSchemaIfNotExists(schemaDocument);
 
