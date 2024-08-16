@@ -32,7 +32,7 @@ The following roadmap provides an overview of the planned features, their expect
 | [Extends messages](#extends-messages) | On Progress | September 2024 |
 | [Remote Prompt Support for q Command](#remote-prompt-support-for-q-command) | On Progress | September 2024 |
 | [New File Creation with Manifest Support](#new-file-creation-with-manifest-support) | On Design | August 2024 |
-| [Dynamic Message Generation with Remote Prompts](#dynamic-message-generation-with-remote-prompts) | On Design | August 2024 |
+| [Dynamic Message Generation with Remote Prompts](#dynamic-message-generation-with-remote-prompts) | On Progress | August 2024 |
 
 ## Proposals
 
@@ -93,10 +93,8 @@ The new behavior will be as follows:
 ```yaml
 messages:
   - system:
-      title: "Welcome to our system"
       from: https://raw.githubusercontent.com/danielmiessler/fabric/main/patterns/create_tags/system.md
   - user:
-      title: "Hello, this is a test message"
       from: ./blogs/my-publication.md
 ```
 
