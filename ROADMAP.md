@@ -18,6 +18,7 @@ The following roadmap provides an overview of the planned features, their expect
 | Feature | Expected Release Date |
 | --- | --- |
 | [New File Creation with Manifest Support](#new-file-creation-with-manifest-support) | August 2024 |
+| [Dynamic Message Generation with Remote Prompts](#dynamic-message-generation-with-remote-prompts) | August 2024 |
 
 ### ⏳ Planned
 
@@ -32,8 +33,6 @@ The following roadmap provides an overview of the planned features, their expect
 | --- | --- | --- |
 | [Extends messages](#extends-messages) | On Progress | September 2024 |
 | [Remote Prompt Support for q Command](#remote-prompt-support-for-q-command) | On Progress | September 2024 |
-| [New File Creation with Manifest Support](#new-file-creation-with-manifest-support) | Done | August 2024 |
-| [Dynamic Message Generation with Remote Prompts](#dynamic-message-generation-with-remote-prompts) | On Progress | August 2024 |
 
 ## Proposals
 
