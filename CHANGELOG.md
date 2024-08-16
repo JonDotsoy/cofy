@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.6.0](https://github.com/JonDotsoy/q-project/compare/q-v0.5.0...q-v0.6.0) (2024-08-16)
+
+
+### Features
+
+* add functionality to download and resolve messages from manifest document ([222443a](https://github.com/JonDotsoy/q-project/commit/222443a05a7adc96381a82c27f37e8528a55804d))
+* add message content union to manifest schema and update message object with new types ([bd869ff](https://github.com/JonDotsoy/q-project/commit/bd869ff73d1f088d07fa6d56744684874ecf3b8d))
+* add new flag and feature to bin.ts for creating a new manifest document with visual editor integration ([aac65c3](https://github.com/JonDotsoy/q-project/commit/aac65c3355a0ee1f331bfba0ab4348b9a85a3605))
+* add property `from` on messages to include prompts from remote sources ([#14](https://github.com/JonDotsoy/q-project/issues/14)) ([050ef38](https://github.com/JonDotsoy/q-project/commit/050ef388d91e4256a4a28786d06cb8bb83a9ab44))
+
+
+### Performance Improvements
+
+* rename index.ts to src/bin.ts and update imports ([ddcaed6](https://github.com/JonDotsoy/q-project/commit/ddcaed633bbb3b08327f1dcbb2a421fcf2eeb1bb))
+* update bin.ts to load schema from correct location ([d188786](https://github.com/JonDotsoy/q-project/commit/d188786a4aaf077f8c989e2fdab360054707aa01))
+* update Makefile to parse package.json version correctly ([1a41b88](https://github.com/JonDotsoy/q-project/commit/1a41b88312e502a90037f8f0cc8ddabbbbaf97fb))
+
 ## [0.5.0](https://github.com/JonDotsoy/q-project/compare/q-v0.4.0...q-v0.5.0) (2024-08-14)
 
 
