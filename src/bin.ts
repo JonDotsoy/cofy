@@ -9,7 +9,11 @@ import { pkg } from "../pkg";
 import * as fs from "fs/promises";
 import * as os from "os";
 
-const VISUAL_EDITOR = process.env.Q_EDITOR ?? process.env.GIT_EDITOR ?? process.env.EDITOR ?? 'code';
+const VISUAL_EDITOR =
+  process.env.Q_EDITOR ??
+  process.env.GIT_EDITOR ??
+  process.env.EDITOR ??
+  "code";
 
 function createProgressSpin() {
   const symbols = [".  ", ".. ", "..."];
@@ -128,17 +132,22 @@ const main = async (args: string[]) => {
     let tmpFileFullPath: null | URL = null;
 
     if (options.new) {
-      const tmpId = crypto.randomUUID()
-      tmpFileFullPath = new URL(`${tmpId}.yaml`, new URL(`${os.tmpdir()}/`, "file:"));
+      const tmpId = crypto.randomUUID();
+      tmpFileFullPath = new URL(
+        `${tmpId}.yaml`,
+        new URL(`${os.tmpdir()}/`, "file:"),
+      );
       await fs.copyFile(fileFullPath, tmpFileFullPath);
       try {
         await Bun.$`${VISUAL_EDITOR} ${tmpFileFullPath.pathname}`;
       } catch (ex) {
         console.info(`Open the temporal file ${tmpFileFullPath.pathname}`);
       }
-    };
+    }
 
-    const manifest = await ManifestDocument.fromPath(tmpFileFullPath ?? fileFullPath);
+    const manifest = await ManifestDocument.fromPath(
+      tmpFileFullPath ?? fileFullPath,
+    );
 
     manifest.setSchemaIfNotExists(schemaDocument);
 

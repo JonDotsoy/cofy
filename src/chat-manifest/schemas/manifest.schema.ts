@@ -1,9 +1,16 @@
 import { object, union, string, array, optional } from "zod";
 
+export const MessageContent = union([
+  string(),
+  object({
+    from: string(),
+  }),
+]);
+
 export const MessageObject = union([
-  object({ system: string() }),
-  object({ user: string() }),
-  object({ assistant: string() }),
+  object({ system: MessageContent }),
+  object({ user: MessageContent }),
+  object({ assistant: MessageContent }),
 ]);
 
 export const ManifestSchema = object({

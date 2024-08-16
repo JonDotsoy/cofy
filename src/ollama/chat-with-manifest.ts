@@ -8,14 +8,27 @@ export const ollama = new Ollama();
 const messageObjectToMessage = (
   messageObject: MessageObjectDto,
 ): Message | null => {
-  if ("system" in messageObject)
-    return { role: "system", content: messageObject.system };
-  if ("user" in messageObject)
-    return { role: "user", content: messageObject.user };
-  if ("assistant" in messageObject)
-    return { role: "assistant", content: messageObject.assistant };
+  const getContent = () => {
+    if ("system" in messageObject)
+      return { role: "system", content: messageObject.system };
+    if ("user" in messageObject)
+      return { role: "user", content: messageObject.user };
+    if ("assistant" in messageObject)
+      return { role: "assistant", content: messageObject.assistant };
+    return null;
+  };
 
-  return null;
+  const content = getContent();
+
+  if (content === null) return null;
+
+  if (typeof content.content !== "string")
+    throw new Error("Content must be a string");
+
+  return {
+    role: content.role,
+    content: content.content,
+  };
 };
 
 export const getMessagesFromManifest = async function* (
