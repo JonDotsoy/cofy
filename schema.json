@@ -31,7 +31,23 @@
             "type": "object",
             "properties": {
               "system": {
-                "type": "string"
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "from": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "from"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
               }
             },
             "required": [
@@ -43,7 +59,7 @@
             "type": "object",
             "properties": {
               "user": {
-                "type": "string"
+                "$ref": "#/properties/messages/items/anyOf/0/properties/system"
               }
             },
             "required": [
@@ -55,7 +71,7 @@
             "type": "object",
             "properties": {
               "assistant": {
-                "type": "string"
+                "$ref": "#/properties/messages/items/anyOf/0/properties/system"
               }
             },
             "required": [
