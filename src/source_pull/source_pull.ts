@@ -1,4 +1,6 @@
-import { canDownload } from "../common/download";
+import { canDownload, download } from "../common/download";
+import os from "os";
+import * as fs from "fs/promises";
 
 export class SourcePull {
   #url: string;
@@ -17,6 +19,24 @@ export class SourcePull {
 
   get url() {
     return this.#url;
+  }
+
+  async download(): Promise<string> {
+    const cache = `${os.tmpdir()}/__q__/cache/`;
+    await fs.mkdir(cache, { recursive: true });
+    const hash = Array.from(
+      new Uint8Array(
+        await crypto.subtle.digest("SHA-1", new TextEncoder().encode(this.url)),
+      ),
+      (char) => char.toString(16).padStart(2, "0"),
+    ).join("");
+    const fileCache = new URL(`${hash}`, new URL(cache, "file://"));
+    if (await fs.exists(fileCache)) {
+      return fileCache.toString();
+    }
+    const txt = await download(this.url);
+    await fs.writeFile(fileCache, txt);
+    return fileCache.toString();
   }
 
   static *toAlternativePaths(name: string, cwd: string = process.cwd()) {
