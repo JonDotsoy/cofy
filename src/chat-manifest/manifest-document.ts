@@ -7,24 +7,7 @@ import type { SchemaDocument } from "../schema-file/schema-document";
 import { vpath } from "./vpath";
 import { $ } from "bun";
 import * as Handlebars from "handlebars";
-
-const downloadFromURL = async (source: string) => {
-  const res = await fetch(source);
-  return res.text();
-};
-const download = async (source: string) => {
-  const src = new URL(source, new URL(`${process.cwd()}/`, "file://"));
-
-  if (src.protocol === "http:" || src.protocol === "https:") {
-    return await downloadFromURL(src.href);
-  }
-
-  if (src.protocol === "file:") {
-    return await fs.readFile(src.pathname, "utf-8");
-  }
-
-  throw new Error(`Unsupported protocol: ${src.protocol}`);
-};
+import { download } from "../common/download.js";
 
 const logWarn = (message: string) => {
   if (logWarn.logged) return;
