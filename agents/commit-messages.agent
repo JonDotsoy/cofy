@@ -29,3 +29,5 @@ messages:
 
       Added `document_id` and `output` fields with experimental tag.
       Updated `options` field to include `model` and added `extends` field for importing messages from external sources.
+  - user: |-
+      {{$ "git --no-pager diff --staged"}}
