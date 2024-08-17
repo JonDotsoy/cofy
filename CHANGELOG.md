@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/JonDotsoy/q-project/compare/q-v0.6.0...q-v0.6.1) (2024-08-17)
+
+
+### Bug Fixes
+
+* update Makefile to compile bin.ts instead of index.ts ([fc9a3c4](https://github.com/JonDotsoy/q-project/commit/fc9a3c46d8b14387fe4ace9dfd8cf2a90714d54e))
+
 ## [0.6.0](https://github.com/JonDotsoy/q-project/compare/q-v0.5.0...q-v0.6.0) (2024-08-16)
 
 
