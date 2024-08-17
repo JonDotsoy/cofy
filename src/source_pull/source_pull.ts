@@ -22,6 +22,10 @@ export class SourcePull {
   }
 
   async download(): Promise<string> {
+    if (this.url.startsWith("file:")) {
+      return this.url;
+    }
+
     const cache = `${os.tmpdir()}/__q__/cache/`;
     await fs.mkdir(cache, { recursive: true });
     const hash = Array.from(
