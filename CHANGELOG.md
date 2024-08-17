@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.7.0](https://github.com/JonDotsoy/q-project/compare/q-v0.6.1...q-v0.7.0) (2024-08-17)
+
+
+### Features
+
+* add source pull functionality and tests ([af9a342](https://github.com/JonDotsoy/q-project/commit/af9a3423bd073e81af01d7f2e5b35d0be62f941e))
+* add support for downloading sources from URLs and caching them locally ([3f6a09e](https://github.com/JonDotsoy/q-project/commit/3f6a09e87d98e8bf2c74764e8f2188f458e2c546))
+* add support for file protocol in source pull download method ([fdbcda5](https://github.com/JonDotsoy/q-project/commit/fdbcda5d1f84ba8580bf6a33747f134ea1c3fec6))
+* external conversations sample `q commit-messages` ([#17](https://github.com/JonDotsoy/q-project/issues/17)) ([9b229ef](https://github.com/JonDotsoy/q-project/commit/9b229ef9c411ab37a872434cfa55ed4ac2563d2d))
+* extract download logic to a separate module and remove duplicated code ([6e15e06](https://github.com/JonDotsoy/q-project/commit/6e15e06195f5afd1a04ffb135f7845a75d8a2a01))
+
+
+### Bug Fixes
+
+* update commit-messages.agent ([6cf7dc5](https://github.com/JonDotsoy/q-project/commit/6cf7dc5841a4b17e935d8feaccd066922ad1be7a))
+
 ## [0.6.1](https://github.com/JonDotsoy/q-project/compare/q-v0.6.0...q-v0.6.1) (2024-08-17)
 
 
