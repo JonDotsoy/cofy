@@ -8,6 +8,7 @@ import * as flags from "@jondotsoy/flags";
 import { pkg } from "../pkg";
 import * as fs from "fs/promises";
 import * as os from "os";
+import { SourcePull } from "./source_pull/source_pull";
 
 const VISUAL_EDITOR =
   process.env.Q_EDITOR ??
@@ -69,13 +70,6 @@ const mainRules: flags.Rule<MainOptions>[] = [
   flags.rule(flags.flag("-n", "--new"), flags.isBooleanAt("new")),
   flags.rule((arg, ctx) => {
     if (ctx.flags.fileRelativePath) return false;
-    const fileMatched =
-      arg.endsWith(".agent") ||
-      arg.endsWith(".yaml") ||
-      arg.endsWith(".yml") ||
-      arg.endsWith(".qmyaml") ||
-      arg.endsWith(".qmyml");
-    if (!fileMatched) return false;
     ctx.argValue = arg;
     return true;
   }, flags.isStringAt("fileRelativePath")),
@@ -128,10 +122,15 @@ const main = async (args: string[]) => {
 
     if (!fileRelativePath) throw new Error("No file path provided");
 
-    const fileFullPath = urlFromRelativePath(fileRelativePath);
+    const sourcePull = await SourcePull.from(fileRelativePath);
+    const fileFullPath = new URL(await sourcePull.download());
     let tmpFileFullPath: null | URL = null;
 
-    if (options.new) {
+    if (
+      options.new ||
+      sourcePull.url.startsWith("http:") ||
+      sourcePull.url.startsWith("https:")
+    ) {
       const tmpId = crypto.randomUUID();
       tmpFileFullPath = new URL(
         `${tmpId}.yaml`,
