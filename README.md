@@ -13,6 +13,7 @@ The inspiration behind Project Q is the desire to make AI development more acces
 - [Installation](#installation)
 - [Usage](#usage)
 - [Manifest File Format](#manifest-file-format)
+- [Examples](#examples)
 
 ## Installation
 
@@ -95,6 +96,13 @@ Q will use the specified model for responding to questions.
 - `--model`: Specifies the AI model to use.
 
 **Note:** The flag `--list-models` may not work as expected. To list available models, please run `ollama list` instead.
+
+## Examples
+
+You can also use Project Q with pre-defined conversations from the repository. For example:
+
+*   Run `q commit-messages` to generate a message for the latest commit on the repository.
+    *   The command will download the conversation agent from https://raw.githubusercontent.com/JonDotsoy/q-project/HEAD/agents/commit-messages.agent and execute it locally.
 
 ## Manifest File Format
 
