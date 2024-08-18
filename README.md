@@ -1,8 +1,8 @@
-# Project Q: Simplifying Conversational AI Development
+# Project Cofy: Simplifying Conversational AI Development
 
-Project Q is an open-source project that aims to simplify the process of working with artificial intelligence models, making it easier for developers and researchers to create and manage conversations using a straightforward YAML file. By providing a user-friendly interface through a text editor, Q streamlines the workflow for those working with conversational AI, eliminating the need for extensive programming knowledge or complex APIs.
+Project Cofy is an open-source project that aims to simplify the process of working with artificial intelligence models, making it easier for developers and researchers to create and manage conversations using a straightforward YAML file. By providing a user-friendly interface through a text editor, Cofy streamlines the workflow for those working with conversational AI, eliminating the need for extensive programming knowledge or complex APIs.
 
-The inspiration behind Project Q is the desire to make AI development more accessible to a broader range of users, from developers and researchers to students and hobbyists. By leveraging YAML files as a simple and intuitive input format, Q reduces the barrier to entry, allowing users to focus on creating innovative conversations rather than wrestling with complex code or APIs. With Project Q, you can easily create, manage, and deploy conversational AI models using a minimalistic syntax that's easy to learn and use.
+The inspiration behind Project Cofy is the desire to make AI development more accessible to a broader range of users, from developers and researchers to students and hobbyists. By leveraging YAML files as a simple and intuitive input format, Cofy reduces the barrier to entry, allowing users to focus on creating innovative conversations rather than wrestling with complex code or APIs. With Project Cofy, you can easily create, manage, and deploy conversational AI models using a minimalistic syntax that's easy to learn and use.
 
 **Demo**
 
@@ -17,24 +17,24 @@ The inspiration behind Project Q is the desire to make AI development more acces
 
 ## Installation
 
-To install Project Q, you can use Homebrew on macOS. Simply run the following command in your terminal:
+To install Project Cofy, you can use Homebrew on macOS. Simply run the following command in your terminal:
 
 ```
-brew install jondotsoy/core/q
+brew install jondotsoy/core/cofy
 ```
 
-Alternatively, you can install Project Q locally on any operating system.
+Alternatively, you can install Project Cofy locally on any operating system.
 
 ### Local Installation
 
-Before installing Project Q, you need to have Bun.js installed on your system. You can download and install Bun.js from the official website: https://bun.sh
+Before installing Project Cofy, you need to have Bun.js installed on your system. You can download and install Bun.js from the official website: https://bun.sh
 
 **Install**
 
 Clone the repository:
 
 ```shell
-git clone https://github.com/JonDotsoy/q-project.git
+git clone https://github.com/JonDotsoy/cofy.git
 ```
 
 Install dependencies:
@@ -49,7 +49,7 @@ Compile the project:
 make build
 ```
 
-This will compile and prepare your local environment for running Project Q.
+This will compile and prepare your local environment for running Project Cofy.
 
 ## Usage
 
@@ -68,41 +68,41 @@ messages:
       Nice to meet you!
 ```
 
-This file defines the conversation flow and context for Project Q.
+This file defines the conversation flow and context for Project Cofy.
 
-### 2. Run Q:
+### 2. Run Cofy:
 
-After creating the `manifest.yaml` file, you can run Project Q using the following command:
+After creating the `manifest.yaml` file, you can run Project Cofy using the following command:
 
 ```shell
-q manifest.yaml
+cofy manifest.yaml
 ```
 
-Q will process the YAML file and respond with a message based on the defined conversation flow.
+Cofy will process the YAML file and respond with a message based on the defined conversation flow.
 
 ### 3. Specify a specific model:
 
 To use a specific AI model, such as gemma:7b, specify it in the command like this:
 
 ```shell
-q --model=gemma:7b manifest.yaml
+cofy --model=gemma:7b manifest.yaml
 ```
 
-Q will use the specified model for responding to questions.
+Cofy will use the specified model for responding to questions.
 
 ### Arguments
 
-- `--version`: Displays the version of Q.
+- `--version`: Displays the version of Cofy.
 - `--model`: Specifies the AI model to use.
 
 **Note:** The flag `--list-models` may not work as expected. To list available models, please run `ollama list` instead.
 
 ## Examples
 
-You can also use Project Q with pre-defined conversations from the repository. For example:
+You can also use Project Cofy with pre-defined conversations from the repository. For example:
 
-*   Run `q commit-messages` to generate a message for the latest commit on the repository.
-    *   The command will download the conversation agent from https://raw.githubusercontent.com/JonDotsoy/q-project/HEAD/agents/commit-messages.agent and execute it locally.
+*   Run `cofy commit-messages` to generate a message for the latest commit on the repository.
+    *   The command will download the conversation agent from https://raw.githubusercontent.com/JonDotsoy/cofy-project/HEAD/agents/commit-messages.agent and execute it locally.
 
 ## Manifest File Format
 
@@ -177,8 +177,8 @@ This will include all messages defined in `./messages_extends.yaml`.
 
 ## License
 
-Q is licensed under MIT. The license can be found in the [./LICENSE](./LICENSE) file.
+Cofy is licensed under MIT. The license can be found in the [./LICENSE](./LICENSE) file.
 
 ## Support
 
-For help or questions, please open an issue on the [GitHub repository](https://github.com/JonDotsoy/q-project/issues/new).
+For help or questions, please open an issue on the [GitHub repository](https://github.com/JonDotsoy/cofy-project/issues/new).
