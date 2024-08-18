@@ -101,8 +101,8 @@ Cofy will use the specified model for responding to questions.
 
 You can also use Project Cofy with pre-defined conversations from the repository. For example:
 
-*   Run `cofy commit-messages` to generate a message for the latest commit on the repository.
-    *   The command will download the conversation agent from https://raw.githubusercontent.com/JonDotsoy/cofy-project/HEAD/agents/commit-messages.agent and execute it locally.
+*   Run `cofy commit-message` to generate a message for the latest commit on the repository.
+    *   The command will download the conversation agent from https://raw.githubusercontent.com/JonDotsoy/cofy-project/HEAD/agents/commit-message.agent and execute it locally.
 
 ## Manifest File Format
 
