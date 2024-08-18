@@ -6,4 +6,4 @@ preparepkg:
 	bunx prettier -w pkg.ts
 
 build:
-	bun build --compile src/bin.ts --outfile dist/q
+	bun build --compile src/bin.ts --outfile dist/cofy
