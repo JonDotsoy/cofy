@@ -148,7 +148,8 @@ const main = async (args: string[]) => {
       tmpFileFullPath ?? fileFullPath,
     );
 
-    manifest.setSchemaIfNotExists(schemaDocument);
+    // DEPRECATED!
+    // manifest.setSchemaIfNotExists(schemaDocument);
 
     if (options.prompt) {
       manifest.addMessage("user", options.prompt);
