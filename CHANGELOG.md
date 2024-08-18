@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.8.0](https://github.com/JonDotsoy/cofy/compare/q-v0.7.0...q-v0.8.0) (2024-08-18)
+
+
+### Features
+
+* add git staged diff to commit message generation ([3380685](https://github.com/JonDotsoy/cofy/commit/33806850c877fbb5cc0ae86f727c8deea59810ff))
+* delete commit-messages.agent ([36772ee](https://github.com/JonDotsoy/cofy/commit/36772ee15b73582bf0946425d158385eae75875e))
+* implement commit message agent ([f48862d](https://github.com/JonDotsoy/cofy/commit/f48862dcaa81d8b3a7fae9dea1c98c903eea0ea8))
+* update source pull error message to use "found" instead of "find" ([ea04e3d](https://github.com/JonDotsoy/cofy/commit/ea04e3d698976616bf087af7c26d797eebfd0230))
+
+
+### Bug Fixes
+
+* remove deprecated line in bin.ts to prevent potential issues ([a157bc6](https://github.com/JonDotsoy/cofy/commit/a157bc60125c37667a9b02aa9d49ee56e73381a1))
+
 ## [0.7.0](https://github.com/JonDotsoy/q-project/compare/q-v0.6.1...q-v0.7.0) (2024-08-17)
 
 
