@@ -67,6 +67,6 @@ export class SourcePull {
       }
     }
 
-    throw new Error(`Cannot find ${name}`);
+    throw new Error(`Cannot found ${name} source.`);
   }
 }
