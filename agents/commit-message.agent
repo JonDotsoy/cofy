@@ -57,3 +57,5 @@ messages:
       # INPUT:
 
       INPUT:
+  - user: |
+      {{$ "git --no-pager diff --staged"}}
