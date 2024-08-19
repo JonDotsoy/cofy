@@ -59,6 +59,7 @@ type MainOptions = {
   render: boolean;
   listModels: boolean;
   new: boolean;
+  cwd: string;
 };
 
 const mainRules: flags.Rule<MainOptions>[] = [
@@ -68,6 +69,7 @@ const mainRules: flags.Rule<MainOptions>[] = [
   flags.rule(flags.flag("--schema"), flags.isBooleanAt("schema")),
   flags.rule(flags.flag("--render"), flags.isBooleanAt("render")),
   flags.rule(flags.flag("-n", "--new"), flags.isBooleanAt("new")),
+  flags.rule(flags.flag("-c", "--cwd"), flags.isStringAt("cwd")),
   flags.rule((arg, ctx) => {
     if (ctx.flags.fileRelativePath) return false;
     ctx.argValue = arg;
@@ -82,6 +84,8 @@ const mainRules: flags.Rule<MainOptions>[] = [
 
 const main = async (args: string[]) => {
   const options = flags.flags(args, {}, mainRules);
+
+  const cwd = options.cwd ?? process.cwd();
 
   if (options.version) {
     console.log(`${pkg.version}`);
@@ -122,7 +126,7 @@ const main = async (args: string[]) => {
 
     if (!fileRelativePath) throw new Error("No file path provided");
 
-    const sourcePull = await SourcePull.from(fileRelativePath, process.cwd());
+    const sourcePull = await SourcePull.from(fileRelativePath, cwd);
     const fileFullPath = new URL(await sourcePull.download());
     let tmpFileFullPath: null | URL = null;
 
