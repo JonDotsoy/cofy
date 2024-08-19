@@ -122,7 +122,7 @@ const main = async (args: string[]) => {
 
     if (!fileRelativePath) throw new Error("No file path provided");
 
-    const sourcePull = await SourcePull.from(fileRelativePath);
+    const sourcePull = await SourcePull.from(fileRelativePath, process.cwd());
     const fileFullPath = new URL(await sourcePull.download());
     let tmpFileFullPath: null | URL = null;
 
