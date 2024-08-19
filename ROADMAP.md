@@ -33,6 +33,7 @@ The following roadmap provides an overview of the planned features, their expect
 | --- | --- | --- |
 | [Extends messages](#extends-messages) | On Progress | September 2024 |
 | [Remote Prompt Support for q Command](#remote-prompt-support-for-q-command) | On Progress | September 2024 |
+| [🐞 Vulnerability protection before to read a file or execute a command](#-vulnerability-protection-before-to-read-a-file-or-execute-a-command) | On Design | September 2024 |
 
 ## Proposals
 
@@ -102,3 +103,9 @@ In this example, the `q` command will fetch and display two messages:
 2. The second message is intended for a specific user and fetched from a local file path.
 
 By introducing this feature, we can make it easier to create dynamic and interactive experiences within our application.
+
+### 🐞 Vulnerability protection before to read a file or execute a command
+
+Show on terminal before to execute on terminal o read a file.
+
+If use `roadmap -A` this allow all execution otherwise show on terminal if you area allow this action.
