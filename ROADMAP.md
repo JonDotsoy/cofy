@@ -34,6 +34,7 @@ The following roadmap provides an overview of the planned features, their expect
 | [Extends messages](#extends-messages) | On Progress | September 2024 |
 | [Remote Prompt Support for q Command](#remote-prompt-support-for-q-command) | On Progress | September 2024 |
 | [🐞 Vulnerability protection before to read a file or execute a command](#-vulnerability-protection-before-to-read-a-file-or-execute-a-command) | On Design | September 2024 |
+| [Script to run after](#script-to-run-after) | On Design | August 2024 |
 
 ## Proposals
 
@@ -109,3 +110,12 @@ By introducing this feature, we can make it easier to create dynamic and interac
 Show on terminal before to execute on terminal o read a file.
 
 If use `roadmap -A` this allow all execution otherwise show on terminal if you area allow this action.
+
+### Script to run after
+
+Add rules to run after of complete competition of message. This action allow to automatize operations like a formatter, transforms.
+
+**Example:**
+
+- Run `cofy commit-message` to generate the commit message
+- On the after script run automatically the command `git commit`
