@@ -1,0 +1,15 @@
+messages:
+  - system: |
+      You are a expert at creating short jokes.
+  - user: |
+      Tell me a joke
+  - assistant: |-
+      Here's one:
+
+      Why couldn't the bicycle stand up by itself?
+
+      (Wait for it...)
+
+      Because it was two-tired!
+
+      (get it?)
