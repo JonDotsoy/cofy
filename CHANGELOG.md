@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.9.0](https://github.com/JonDotsoy/cofy/compare/q-v0.8.0...q-v0.9.0) (2024-08-19)
+
+
+### Features
+
+* add sample joke agent ([4448872](https://github.com/JonDotsoy/cofy/commit/44488727abead750afcb8cff53f06826c5735870))
+* update bin.ts to handle cwd option and use it in SourcePull.from function ([edd1481](https://github.com/JonDotsoy/cofy/commit/edd1481ee33f6791a4678412d554110a287d5cdb))
+
+
+### Bug Fixes
+
+* add new message to sample agent ([e372c70](https://github.com/JonDotsoy/cofy/commit/e372c70b4a79e67a99f59be1bfb628f6892b77e3))
+* add sample on agent to commit message template ([3e7c3ec](https://github.com/JonDotsoy/cofy/commit/3e7c3ecb9c91c737255f4d072891be8352a44dc2))
+* update source_pull.ts to accept a custom current working directory for SourcePull.from function ([11d64f7](https://github.com/JonDotsoy/cofy/commit/11d64f7a6bcdbc624d4a06a75751de916b764394))
+
 ## [0.8.0](https://github.com/JonDotsoy/cofy/compare/q-v0.7.0...q-v0.8.0) (2024-08-18)
 
 
