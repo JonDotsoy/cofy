@@ -1,8 +1,8 @@
 # Project Cofy: Simplifying Conversational AI Development
 
-Project Cofy is an open-source project that aims to simplify the process of working with artificial intelligence models, making it easier for developers and researchers to create and manage conversations using a straightforward YAML file. By providing a user-friendly interface through a text editor, Cofy streamlines the workflow for those working with conversational AI, eliminating the need for extensive programming knowledge or complex APIs.
+Project Cofy is an open-source project that aims to simplify the task of working with artificial intelligence models, making it easier for developers and researchers to create and manage conversations using a YAML file directly. By providing a user-friendly interface through a text editor, Cofy eliminates the need for complex programming knowledge or APIs, streamlining the workflow for those working with conversation AI.
 
-The inspiration behind Project Cofy is the desire to make AI development more accessible to a broader range of users, from developers and researchers to students and hobbyists. By leveraging YAML files as a simple and intuitive input format, Cofy reduces the barrier to entry, allowing users to focus on creating innovative conversations rather than wrestling with complex code or APIs. With Project Cofy, you can easily create, manage, and deploy conversational AI models using a minimalistic syntax that's easy to learn and use.
+The inspiration behind Project Cofy is to make AI development more accessible to a wider range of users, from developers and researchers to students and hobbyists. By leveraging YAML files as a simple and intuitive input format, Cofy reduces the barrier of access, allowing users to focus on creating innovative conversations without having to struggle with complex code or APIs.
 
 **Demo**
 
@@ -13,28 +13,27 @@ The inspiration behind Project Cofy is the desire to make AI development more ac
 - [Installation](#installation)
 - [Usage](#usage)
 - [Manifest File Format](#manifest-file-format)
-- [Examples](#examples)
 
 ## Installation
 
-To install Project Cofy, you can use Homebrew on macOS. Simply run the following command in your terminal:
+To install Project Cofy, you can use Homebrew on macOS. Simply execute the following command in your terminal:
 
 ```
 brew install jondotsoy/core/cofy
 ```
 
-Alternatively, you can install Project Cofy locally on any operating system.
+Alternatively, you can also install it locally on any system.
 
 ### Local Installation
 
-Before installing Project Cofy, you need to have Bun.js installed on your system. You can download and install Bun.js from the official website: https://bun.sh
+Before installing Project Cofy, you need to have Bun.js installed on your system. You can download and install Bun.js from its official website: https://bun.sh
 
 **Install**
 
 Clone the repository:
 
 ```shell
-git clone https://github.com/JonDotsoy/cofy.git
+git clone https://github.com/JonDotsoy/cofy-project.git
 ```
 
 Install dependencies:
@@ -43,142 +42,71 @@ Install dependencies:
 make install
 ```
 
-Compile the project:
+Build the project:
 
 ```shell
 make build
 ```
 
-This will compile and prepare your local environment for running Project Cofy.
+This will compile the binary in `./dist/cofy`.
 
 ## Usage
 
-### 1. Create a YAML file:
+### Create a Conversation using a YAML File:
 
-The manifest file, named `manifest.yaml`, should contain the following structure:
+The manifest file in YAML format can contain the following structure:
 
 ```yaml
 # manifest.yaml
 messages:
   - system: |
-      Hello, how are you?
+      You are an expert at creating short jokes.
   - user: |
-      I'm fine, thank you.
-  - assistant: |
-      Nice to meet you!
+      Tell me a joke
 ```
 
-This file defines the conversation flow and context for Project Cofy.
+This file describes a conversation with the AI, within `messages` you control the flow of the conversation, write what says the role of `system`, `assistant` and `user`.
 
-### 2. Run Cofy:
+**Run Cofy:**
 
-After creating the `manifest.yaml` file, you can run Project Cofy using the following command:
+After creating the file, you can run `cofy` to continue the conversation with the AI.
 
 ```shell
 cofy manifest.yaml
 ```
 
-Cofy will process the YAML file and respond with a message based on the defined conversation flow.
+Cofy will process the YAML file and respond with a message based on the flow of conversation defined.
 
-### 3. Specify a specific model:
+```yaml
+messages:
+  - system: |
+      You are an expert at creating short jokes.
+  - user: |
+      Tell me a joke
+  - assistant: |-
+      Here's one:
 
-To use a specific AI model, such as gemma:7b, specify it in the command like this:
+      Why couldn't the bicycle stand up by itself?
 
-```shell
-cofy --model=gemma:7b manifest.yaml
+      (Wait for it...)
+
+      Because it was two-tired!
+
+      (get it?)
 ```
 
-Cofy will use the specified model for responding to questions.
+### Run a Conversation Saved
 
-### Arguments
+There are agents that you can run quickly from [Cofy Github](https://github.com/JonDotsoy/cofy/tree/develop/agents) a repository in Github or from your local machine.
 
-- `--version`: Displays the version of Cofy.
-- `--model`: Specifies the AI model to use.
+The following example downloads the agent from https://github.com/JonDotsoy/cofy/blob/develop/agents/commit-message.agent and processes locally to create an automatic message for saved conversations.
 
-**Note:** The flag `--list-models` may not work as expected. To list available models, please run `ollama list` instead.
-
-## Examples
-
-You can also use Project Cofy with pre-defined conversations from the repository. For example:
-
-*   Run `cofy commit-message` to generate a message for the latest commit on the repository.
-    *   The command will download the conversation agent from https://raw.githubusercontent.com/JonDotsoy/cofy-project/HEAD/agents/commit-message.agent and execute it locally.
+![result to run `cofy commit-message`](./docs/samples/run-cofy-commit-message-agent.png)
 
 ## Manifest File Format
 
-The manifest file, named `manifest.yaml`, should contain the following structure:
+For more information about the manifest file format, you can check out [manifest.md](./docs/manifest.md).
 
-```yaml
-# manifest.yaml
-messages:
-  - system: |-
-      ...
-  - user: |-
-      ...
-  - assistant: |-
-      ...
-```
+## Roadmap
 
-### Messages
-
-- `system`: Message sent by the bot.
-- `user`: Message sent by the user.
-- `assistant`: Response from the AI model.
-
-### Context
-
-> 🚧 Work on progress
-
-You can store context information in your YAML file using the following syntax:
-
-```yaml
-context:
-  previous_question: What is your name?
-```
-
-Context information helps the AI model keep track of the conversation history and provide more accurate responses.
-
-### Embedding Content
-
-You can embed the content of another document into your manifest YAML file using `{{include <ruta del archivo>}}`. For example:
-
-```yaml
-messages:
-  - system: |
-      {{include "./hello.txt"}}
-```
-
-This will insert the contents of `hello.txt` into the conversation.
-
-### Executing Commands
-
-You can also embed the output of a command execution into your manifest YAML file using `{{$ command}}`. For example:
-
-```yaml
-messages:
-  - system: |
-      {{$ 'ls -l | grep *.txt'}}
-```
-
-This will execute the `ls -l` command and embed the output, filtering only files with `.txt` extensions.
-
-## Extending Manifest Files
-
-> 🚧 Experimental feature
-
-The manifest file can have a property `extends` that includes messages in this file. This feature is experimental.
-
-```yaml
-# manifest.yaml
-extends: ./messages_extends.yaml
-```
-
-This will include all messages defined in `./messages_extends.yaml`.
-
-## License
-
-Cofy is licensed under MIT. The license can be found in the [./LICENSE](./LICENSE) file.
-
-## Support
-
-For help or questions, please open an issue on the [GitHub repository](https://github.com/JonDotsoy/cofy-project/issues/new).
+To see upcoming improvements to this project, read the [ROADMAP](./ROADMAP.md) file.
